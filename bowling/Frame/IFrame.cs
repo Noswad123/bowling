@@ -10,6 +10,9 @@ namespace bowling
     {
         Throw FirstThrow { get; set; }
         Throw SecondThrow { get; set; }
-        bool isSpare();
+
+        void IsSpareOrStrike();
+        int GetScore(List<IFrame> frames, int frameIndex);
+       
     }
 }

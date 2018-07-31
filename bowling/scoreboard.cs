@@ -6,106 +6,38 @@ using System.Threading.Tasks;
 
 namespace bowling
 {
-    class scoreboard
+    class Scoreboard
     {
-        List<IFrame> Score= new List<IFrame>(10);
+        List<IFrame> Frames;
+        int total;
+        public Scoreboard(int[] scores)
+        {
+            Frames = new List<IFrame>();
+            total = 0;
+            for (int throwValue = 0; throwValue < scores.Length-2; throwValue++)
+            {
+                if (throwValue < 18)
+                {
+                    Frames.Add(new RegularFrame(scores[throwValue], scores[throwValue + 1]));
+                    throwValue++;
+                } 
+                else{
+                    Frames.Add(new FinalFrame(scores[throwValue], scores[throwValue + 1], scores[throwValue + 2]));
+                }
+            }
+        }
         public int CalculateScore()
         {
-           
-                //start at 0-17
-                foreach (IFrame frame in Score)
-                {
-                    //check for strike
-                    
-                
-                            i++;
-                            wasStrike = true;
-                        }
-                        else
-                        {
-                            if (wasSpare)
-                            {
-                                scoreArray[placeholder - 1] += input[i];
-                            }
-
-                            scoreArray[placeholder] += input[i];
-                            wasStrike = false;
-                        }
-
-                    }
-                    else
-                    {
-
-                        if (isSpare(input[i], input[i - 1]))
-                        {
-                            wasSpare = true;
-                            if (wasStrike)
-                            {
-
-                            }
-                        }
-                        else
-                        {
-                            if (wasStrike)
-                            {
-
-                            }
-                            scoreArray[placeholder] += input[i];
-                            wasSpare = false;
-                        }
-                    }
-
-                }
-
-                //last from (3 throws)
-                for (var j = 18; j < 22; j++)
-                {
-                    if (wasStrike)
-                    {
-
-
-                        if (input[i] == 10)
-                        {
-                            i++;
-                            wasStrike = true;
-                        }
-                        else
-                        {
-                            scoreArray[placeholder] += input[i];
-                            wasStrike = false;
-                        }
-                    }
-                }
-                int sum = 0;
-                .forEach(frame => {
-                    sum += frame;
-                })
-                return sum;
-            }
-            function isFirstThrow(number)
+            
+            for (int frameIndex = 0; frameIndex <Frames.Count; frameIndex++)
             {
-                if (number % 2 == 0 || number == 0)
-                {
-                    return true;
-                }
+                if(Frames[frameIndex].Total!=0)
+                    total+= Frames[frameIndex].Total;
                 else
-                {
-                    return false;
-                }
+                    total += Frames[frameIndex].GetScore(Frames, frameIndex);
             }
-
-            function isSpare(current, previous)
-            {
-                if (current + previous == 10)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return 0;
+            
+            return total;
         }
     }
 }

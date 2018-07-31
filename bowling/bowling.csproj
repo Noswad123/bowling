@@ -41,16 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FinalFrame.cs" />
-    <Compile Include="IFrame.cs" />
+    <Compile Include="Frame\FinalFrame.cs" />
+    <Compile Include="Frame\IFrame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularFrame.cs" />
+    <Compile Include="Frame\RegularFrame.cs" />
     <Compile Include="scoreboard.cs" />
     <Compile Include="Throw.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bowling.MSTest\Bowling.MSTest.csproj">
+      <Project>{7985c351-c76d-4bd2-a02d-1c4d0611ca73}</Project>
+      <Name>Bowling.MSTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

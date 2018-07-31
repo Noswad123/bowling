@@ -9,13 +9,14 @@ namespace bowling
     class Throw
     {
         public bool isStrike { get; set; }
+        public bool isSpare { get; set; }
         public int score;
 
         public Throw(int score)
         {
             this.score = score;
-            isStrike = (score == 10);
-            
+            isStrike = false;
+            isSpare = false;
         }
     }
 }
